@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!-- 自动搜索@Controller标注的类 -->
+    <context:component-scan base-package="com.twoguys.bcstore.controller"/>
+
+    <bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping"/>
+
+    <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter"/>
+
+    <!-- Default ViewResolver -->
+    <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
+        <property name="prefix" value="/WEB-INF/views/"/>
+        <property name="suffix" value=".jsp"></property>
+    </bean>
+
+    <!--<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource" p:basename="i18n/messages"/>-->
+
+    <!-- Mapping exception to the handler view -->
+    <bean id="exceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+        <!-- to /commons/error.jsp -->
+        <property name="defaultErrorView" value="/commons/error"/>
+        <property name="exceptionMappings">
+            <props>
+            </props>
+        </property>
+    </bean>
+</beans>
